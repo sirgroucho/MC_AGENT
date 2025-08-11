@@ -1,4 +1,3 @@
-````markdown
 # Minecraft Server Agent
 
 **Lightweight, resilient, and secure Docker agent that tails a Minecraft server’s logs to stream live events and metrics to your cloud dashboard.**
