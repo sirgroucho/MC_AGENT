@@ -1,40 +1,13 @@
-version: "3.8"
-
-services:
-  minecraft:
-    image: itzg/minecraft-server:java8    # SkyFactory 4 (1.12.2) needs Java 8
-    container_name: mc
-    env_file:
-      - ./env/minecraft.env
-    volumes:
-      - ./mcdata:/data
-    ports:
-      - "25565:25565"
-    restart: unless-stopped
-
-  mc-agent:
+mc-agent:
     build: .
-    container_name: mc-agent
+    depends_on: [mc]
     env_file:
-      - ./.env              # copy .env.example to .env and fill in
+      - ./.env
     environment:
-      # sensible defaults, can be overridden in .env
-      MC_LOG: "/mc/logs/latest.log"
-      METRIC_INTERVAL: "30"
-      QUEUE_DIR: "/app/queue"
-      DRY_RUN: "1"          # start in dry-run until cloud ingest exists
-    volumes:
-      - ./mcdata/logs:/mc/logs:ro     # read MC logs
-      - agent-queue:/app/queue        # persist offline queue
-    # Read-only FS hardening (psutil reads /proc from host via pid: host)
-    read_only: true
-    tmpfs:
-      - /tmp
-    # Get host-level CPU/RAM/load (optional; comment out if you prefer container metrics)
-    pid: "host"
+      DETECT_MODE: "query"
+      MC_HOST: "mc"              # service name on the compose network
+      MC_QUERY_PORT: "25565"
+      # SERVER_ID/AGENT_KEY/INGEST_URL/DRY_RUN pulled from .env
+    # host metrics (optional); remove if you want container metrics instead
+    pid: host
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-
-volumes:
-  agent-queue:
