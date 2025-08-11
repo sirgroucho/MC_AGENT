@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+.env
+.env.*
+!env.example
+
+# Byte-compiled / cache / test
+*.log
+*.sqlite*
+*.db
+*.pid
+
+# Local config / secrets
+.env
+.env.local
+.env.*.local
+secrets/
+agent-queue/
+
+# Docker data volumes
+mcdata/
+mcdata/logs/
+mcdata/world/
+queue/
+queue/*
+
+# OS crap
+.DS_Store
+Thumbs.db
+
+# IDE / editor settings
+.vscode/
+.idea/
+*.swp
+*.swo

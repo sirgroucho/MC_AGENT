@@ -1,0 +1,22 @@
+# Git metadata
+.git
+.gitignore
+
+# Local env/secrets
+.env
+.env.*
+!env.example
+secrets/
+
+# Volumes / data
+mcdata/
+queue/
+agent-queue/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Local-only files
+docker-compose.override.yml
+README.md
