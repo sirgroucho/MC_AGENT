@@ -1,4 +1,3 @@
-````markdown
 # Minecraft Server Agent
 
 **Lightweight, resilient, and secure Docker agent that tails a Minecraft server’s logs to stream live events and metrics to your cloud dashboard.**
@@ -47,23 +46,21 @@ All events are **HMAC-signed** and sent to a configured ingest endpoint—ideal 
 ##  Getting Started
 
 1. Clone the repo:
-   ```bash
-   git clone https://github.com/your-org/minecraft-agent.git
+   
+   git clone https://github.com/sirgroucho/minecraft-agent.git
    cd minecraft-agent
-````
+
 
 2. Copy and update the `.env.example`:
 
-   ```bash
    cp .env.example .env
    # Fill in SERVER_ID, AGENT_KEY, INGEST_URL when cloud is ready
-   ```
+   
 
 3. Build and start via Docker Compose:
 
-   ```bash
    docker compose up -d --build
-   ```
+   
 
    * Initially runs in **dry-run** (prints payloads). Later, set `DRY_RUN=0` when backend is live.
 
