@@ -104,7 +104,7 @@ def query_players_once():
     try:
         srv = JavaServer(MC_HOST, MC_QUERY_PORT)  # UDP
         resp = srv.query()
-        return set(resp.players.names or [])
+        return set(resp.players.list or [])
     except Exception:
         return None
 
